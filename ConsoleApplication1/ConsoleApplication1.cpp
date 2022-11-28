@@ -43,11 +43,11 @@ selection:
 
 		switch (opt) {
 		case 1:
-			printf("\n\nDisplaying all values in array:\n\n");
-
+			printf("\n\n");
 			for (int i = 0; i < arraySize; i++) {
-				printf("%d, ", numbers[i]);
+				printf("%d\t", numbers[i]);
 			}
+			printf("\n\n");
 			break;
 		case 2:
 			total = 0;
@@ -109,7 +109,7 @@ selection:
 				}
 			}
 			for (int i = 0; i < arraySize; i++) {
-				printf("%d, ", numbers[i] - min);
+				printf("%d\t", numbers[i] - min);
 			}
 			printf("\n\n");
 			break;
@@ -117,7 +117,7 @@ selection:
 			return 0;
 			break;
 		default:
-			printf("Invalid option selected... try again...");
+			printf("\n\nInvalid option selected... try again...\n\n");
 			goto selection;
 		}
 	} while (1);
