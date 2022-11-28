@@ -1,13 +1,23 @@
 #include <iostream>
+#include "stdc++.h"
 using namespace std;
 
 int main()
 {
-	/*Array to be used for all functions*/
-	int numbers[5] = { 1, 2, 3, 4, 5 };
+	/*Array to be used*/
+	int numbers[7] = {44, 14, 3, 4, 5, 9, 2};
 
 	/*Other variables to be initialised*/
-	int opt, numOfValues, average, max, total = 0;
+	int numOfValues, valToFind, occurrences{}, average, total = 0;
+	auto opt = 0;
+
+	/*Vars for Option 5 & 9*/
+	int max = INT_MIN;
+	int min = INT_MAX;
+
+	/*Getting Array Size for later on*/
+	/*const int arraySize = 0; for (auto i : numbers) { arraySize++; }*/
+	const int arraySize = sizeof(numbers) / sizeof(numbers[0]);
 
 	/*Menu:
 		Printing all options,
@@ -15,72 +25,101 @@ int main()
 		Runs selected options associated code*/
 	
 selection:
-	printf("\nSelection Menu:\n\n");
-	printf("\t1.  DISPLAY\n");
-	printf("\t2.  TOTAL\n");
-	printf("\t3.  AVERAGE\n");
-	printf("\t4.  LARGEST\n");
-	printf("\t5.  SMALLEST\n");
-	printf("\t6.  OCCURENCES OF VALUE\n");
-	printf("\t7.  SCALE UP\n");
-	printf("\t8.  REVERSE\n");
-	printf("\t9.  ZERO BASE\n");
-	printf("\t10. EXIT\n");
+	do {
+		printf("\nSelection Menu:\n\n");
+		printf("\t1.  DISPLAY\n");
+		printf("\t2.  TOTAL\n");
+		printf("\t3.  AVERAGE\n");
+		printf("\t4.  LARGEST\n");
+		printf("\t5.  SMALLEST\n");
+		printf("\t6.  OCCURRENCES OF VALUE\n");
+		printf("\t7.  SCALE UP\n");
+		printf("\t8.  REVERSE\n");
+		printf("\t9.  ZERO BASE\n");
+		printf("\t10. EXIT\n");
 
-	printf("\n\tPlease make a selection:\t");
-	cin >> opt;
+		printf("\n\tPlease make a selection:\t");
+		cin >> opt;
 
-	switch (opt) {
-	case 1:
-		printf("\n\nDisplaying all values in array:\n\n");
+		switch (opt) {
+		case 1:
+			printf("\n\nDisplaying all values in array:\n\n");
 
-		for (int i = 0; i < 5; i++) {
-			printf("%d", numbers[i]);
+			for (int i = 0; i < arraySize; i++) {
+				printf("%d, ", numbers[i]);
+			}
+			break;
+		case 2:
+			total = 0;
+			for (int i = 0; i < arraySize; i++) {
+				total += numbers[i];
+			}
+
+			printf("\n\nThe total of the numbers is: %d", total);
+
+			for (int l = 0; l < 2; l++) { cout << endl; };
+			break;
+		case 3:
+			numOfValues = 0;
+			for (int i = 0; i < arraySize; i++) {
+				numOfValues += 1;
+			}
+
+			total = 0;
+			for (int i = 0; i < arraySize; i++) {
+				total += numbers[i];
+			}
+
+			average = total / numOfValues;
+			printf("\n\nThe average is:\t%d\n\n", average);
+			break;
+		case 4:
+			break;
+		case 5:
+			for (int i = 0; i < arraySize; i++) {
+				if (numbers[i] < min) {
+					min = numbers[i];
+				}
+			}
+			printf("\n\nThe smallest number is: \t%d.\n\n", min);
+			break;
+		case 6:
+			cout << "Enter value to find:\t";
+			cin >> valToFind;
+			occurrences = 0;
+
+			for (auto i : numbers) {
+				if (i == valToFind) {
+					occurrences++;
+				}
+			}
+
+			printf("\n\nThere was %d occurrence(s).\n\n", occurrences);
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			/*sort(numbers, numbers + arraySize);*/
+			printf("\n\n");
+			for (int i = 0; i < arraySize; i++) {
+				if (numbers[i] < min) {
+					min = numbers[i];
+				}
+			}
+			for (int i = 0; i < arraySize; i++) {
+				printf("%d, ", numbers[i] - min);
+			}
+			printf("\n\n");
+			break;
+		case 10:
+			return 0;
+			break;
+		default:
+			printf("Invalid option selected... try again...");
+			goto selection;
 		}
-		break;
-	case 2:
-		total = 0;
-		for (int i = 0; i < 5; i++) {
-			total += numbers[i];
-		}
-
-		printf("\n\nThe total of the numbers is: %d", total);
-
-		for (int l = 0; l < 2; l++) { cout << endl; };
-		break;
-	case 3:
-		numOfValues = 0;
-		for (int i = 0; i < 5; i++) {
-			numOfValues += 1;
-		}
-
-		total = 0;
-		for (int i = 0; i < 5; i++) {
-			total += numbers[i];
-		}
-
-		average = total/numOfValues;
-		printf("\n\nThe average is:\t%d\n\n", average);
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	case 6:
-		break;
-	case 7:
-		break;
-	case 8:
-		break;
-	case 9:
-		break;
-	case 10:
-		return 0;
-		break;
-	default:
-		printf("Invalid option selected... try again...");
-	}
-	goto selection;
-
+	} while (1);
 }
 
